@@ -15,7 +15,7 @@ public enum FlatType implements BaseEnum<FlatType>{
         return code;
     }
 
-    public static class Converter extends BaseConverter<FlatType> {
+    public static class Converter extends EnumAttributeConverter<FlatType> {
 
         public Converter() {
             super(FlatType.class);
