@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -35,14 +36,22 @@ import java.util.Set;
 @DiscriminatorValue("0")
 public class Occupant extends AuditableEntity<Long> {
     @Column(name = "first_name")
+    @NonNull
     private String firstName;
-    @Column(name = "second_name")
-    private String secondName;
+
+    @Column(name = "last_name")
+    @NonNull
+    private String lastName;
+
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @Column(name = "role")
+    @NonNull
     private OccupationRole role;
+
     @Column(name = "status")
+    @NonNull
     private OccupationStatus status;
 
     @ManyToMany
