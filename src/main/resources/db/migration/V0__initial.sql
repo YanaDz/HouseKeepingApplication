@@ -1,12 +1,12 @@
 CREATE TABLE house
 (
-    id             BIGSERIAL PRIMARY KEY,
-    house_name     VARCHAR(255) NOT NULL,
-    house_address  VARCHAR(255) NOT NULL,
-    entranceNumber INTEGER      NOT NULL,
-    version        BIGINT                DEFAULT 0,
-    created        TIMESTAMP    NOT NULL DEFAULT now(),
-    modified       TIMESTAMP
+    id              BIGSERIAL PRIMARY KEY,
+    house_name      VARCHAR(255) NOT NULL,
+    house_address   VARCHAR(255) NOT NULL,
+    entrance_number INTEGER      NOT NULL,
+    version         BIGINT                DEFAULT 0,
+    created         TIMESTAMP    NOT NULL DEFAULT now(),
+    modified        TIMESTAMP
 );
 
 CREATE TABLE entrance
@@ -37,7 +37,7 @@ CREATE TABLE flat
     flat_type     INTEGER       NOT NULL DEFAULT 1,
     full_area     NUMERIC(5, 2) NOT NULL,
     register_area NUMERIC(5, 2) NOT NULL,
-    floor_id  BIGINT       NOT NULL REFERENCES floor (id),
+    floor_id      BIGINT        NOT NULL REFERENCES floor (id),
     version       BIGINT                 DEFAULT 0,
     created       TIMESTAMP     NOT NULL DEFAULT now(),
     modified      TIMESTAMP
@@ -47,8 +47,8 @@ CREATE TABLE occupant
 (
     id            BIGSERIAL PRIMARY KEY,
     first_name    VARCHAR(255) NOT NULL,
-    second_name   VARCHAR(255) NOT NULL,
-    phone_number  VARCHAR(255) NOT NULL,
+    last_name     VARCHAR(255) NOT NULL,
+    phone_number  VARCHAR(255),
     role          INTEGER      NOT NULL DEFAULT 2,
     status        INTEGER      NOT NULL DEFAULT 1,
     occupant_type INTEGER      NOT NULL DEFAULT 0,
