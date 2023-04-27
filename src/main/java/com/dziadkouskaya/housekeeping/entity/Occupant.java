@@ -3,7 +3,12 @@ package com.dziadkouskaya.housekeeping.entity;
 import com.dziadkouskaya.housekeeping.entity.enumerations.OccupationRole;
 import com.dziadkouskaya.housekeeping.entity.enumerations.OccupationStatus;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -25,6 +30,9 @@ import java.util.Set;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "occupant_type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorValue("0")
 public class Occupant extends AuditableEntity<Long> {
     @Column(name = "first_name")
     private String firstName;
