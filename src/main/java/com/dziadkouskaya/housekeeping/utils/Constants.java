@@ -2,7 +2,11 @@ package com.dziadkouskaya.housekeeping.utils;
 
 public class Constants {
     // exception messages
-    public static String ENUM_EXCEPTION_MESSAGE = "%s is not found for %s";
-    public static String INNER_SERVER_ERROR_MESSAGE = "SERVER ERROR";
-    public static String ACCESS_DENIED_MESSAGE = "ACCESS DENIED";
+    public static final String ENUM_EXCEPTION_MESSAGE = "%s is not found for %s";
+    public static final String INNER_SERVER_ERROR_MESSAGE = "SERVER ERROR";
+    public static final String ACCESS_DENIED_MESSAGE = "ACCESS DENIED";
+    public static final String NOT_NULL_ERROR_MESSAGE = "Value can't be null";
+    public static final String NOT_EMPTY_ERROR_MESSAGE = "Value can't be empty";
+    public static final String HOUSE_EXISTED = "House with name %s and address %s has already existed";
 }
+

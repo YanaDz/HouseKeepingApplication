@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -26,12 +27,15 @@ import java.util.Set;
 public class House extends AuditableEntity<Long> {
 
     @Column(name = "house_name")
+    @NonNull
     private String name;
 
     @Column(name = "house_address")
+    @NonNull
     private String address;
 
     @Column(name = "entrance_number")
+    @NonNull
     private int entranceNumber;
 
     @Builder.Default
