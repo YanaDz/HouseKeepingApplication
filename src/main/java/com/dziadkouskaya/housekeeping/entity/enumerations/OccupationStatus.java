@@ -16,7 +16,7 @@ public enum OccupationStatus implements BaseEnum<OccupationStatus>{
         return code;
     }
 
-    public static class Converter extends BaseConverter<OccupationStatus> {
+    public static class Converter extends EnumConverter<OccupationStatus> {
 
         public Converter() {
             super(OccupationStatus.class);

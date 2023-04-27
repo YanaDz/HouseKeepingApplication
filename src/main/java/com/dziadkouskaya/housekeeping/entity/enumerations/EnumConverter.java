@@ -8,33 +8,35 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
+import static com.dziadkouskaya.housekeeping.utils.Constants.ENUM_EXCEPTION_MESSAGE;
+import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toMap;
 
-public abstract class BaseConverter<E extends BaseEnum<E>> implements AttributeConverter<E, Integer> {
+public abstract class EnumConverter<E extends BaseEnum<E>> implements AttributeConverter<E, Integer> {
 
-    private final Map<Integer, E> mappings;
+    private final Map<Integer, E> enumMappings;
     private final String enumName;
 
-    protected BaseConverter(Class<E> clazz) {
+    protected EnumConverter(Class<E> clazz) {
         enumName = clazz.getSimpleName();
-        mappings = buildMappings(clazz);
+        enumMappings = buildEnumMappings(clazz);
     }
 
     @Override
     public final Integer convertToDatabaseColumn(E attribute) {
-        return attribute == null ? null : attribute.getCode();
+        return isNull(attribute) ? null : attribute.getCode();
     }
 
     @Override
     public final E convertToEntityAttribute(Integer dbData) {
-        if (dbData == null) {
+        if (isNull(dbData)) {
             return null;
         }
-        return Optional.ofNullable(mappings.get(dbData))
-            .orElseThrow(() -> new ConversionException(enumName + " not found for code " + dbData, null));
+        return Optional.ofNullable(enumMappings.get(dbData))
+            .orElseThrow(() -> new ConversionException(String.format(ENUM_EXCEPTION_MESSAGE, enumName, dbData)));
     }
 
-    private Map<Integer, E> buildMappings(Class<E> clazz) {
+    private Map<Integer, E> buildEnumMappings(Class<E> clazz) {
         return Arrays.stream(clazz.getEnumConstants())
             .collect(toMap(BaseEnum::getCode, Function.identity()));
     }
