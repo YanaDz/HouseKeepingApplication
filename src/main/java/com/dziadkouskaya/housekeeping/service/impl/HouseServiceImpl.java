@@ -7,6 +7,7 @@ import com.dziadkouskaya.housekeeping.service.HouseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.dziadkouskaya.housekeeping.utils.Constants.HOUSE_EXISTED;
@@ -33,5 +34,10 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Optional<House> getByNameOrAddress(String... request) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<House> getAll() {
+        return houseRepo.findAll();
     }
 }

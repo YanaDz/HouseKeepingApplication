@@ -35,7 +35,6 @@ public class House extends AuditableEntity<Long> {
     private String address;
 
     @Column(name = "entrance_number")
-    @NonNull
     private int entranceNumber;
 
     @Builder.Default

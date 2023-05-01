@@ -1,8 +1,12 @@
 package com.dziadkouskaya.housekeeping.facade;
 
-import com.dziadkouskaya.housekeeping.entity.dto.CreatedHouseDto;
+import com.dziadkouskaya.housekeeping.entity.dto.HouseDto;
 import com.dziadkouskaya.housekeeping.entity.dto.HouseDtoRequest;
 
+import java.util.List;
+
 public interface HouseFacade {
-    CreatedHouseDto createHouse(HouseDtoRequest dto);
+    HouseDto createHouse(HouseDtoRequest dto);
+
+    List<HouseDto> getAll();
 }
