@@ -10,13 +10,11 @@ services:
   postgres:
     image: postgres:15.2-alpine
     container_name: postgres
-    hostname: postgres
     restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: postgres_secret
-      POSTGRES_DB: housekeeping-db
-      POSTGRES_USER: housekeeping-db-admin
+    env_file:
+      - database.env
     ports:
       - 5432:5432
     networks:
       - housekeeping-network
+
