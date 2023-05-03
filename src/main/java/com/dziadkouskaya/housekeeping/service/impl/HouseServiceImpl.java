@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.dziadkouskaya.housekeeping.repository.specification.HouseSpecification.fullSearch;
+import static com.dziadkouskaya.housekeeping.repository.specification.HouseSpecification.search;
 import static com.dziadkouskaya.housekeeping.utils.Constants.HOUSE_EXISTED;
 
 @Service
@@ -19,7 +21,7 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public House persistHouse(House house) {
-        var existedHouse = getByNameOrAddress(house.getAddress(), house.getName());
+        var existedHouse = getByNameOrAddress(house.getAddress());
         if (existedHouse.isPresent()) {
             throw new EntityExistedExeption(String.format(HOUSE_EXISTED, house.getName(), house.getAddress()));
         }
@@ -32,8 +34,8 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Optional<House> getByNameOrAddress(String... request) {
-        return Optional.empty();
+    public Optional<House> getByNameOrAddress(String request) {
+        return houseRepo.findOne(search(request));
     }
 
     @Override

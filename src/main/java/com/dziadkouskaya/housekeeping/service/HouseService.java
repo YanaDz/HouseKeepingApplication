@@ -10,7 +10,7 @@ public interface HouseService {
 
     Optional<House> getById(Long id);
 
-    Optional<House> getByNameOrAddress(String... request);
+    Optional<House> getByNameOrAddress(String request);
 
     List<House> getAll();
 }
