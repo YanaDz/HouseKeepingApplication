@@ -25,7 +25,7 @@ public class HouseController {
 
     private final HouseFacade houseFacade;
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public HouseDto createHouse(@RequestBody @Valid HouseDtoRequest dto) {
         return houseFacade.createHouse(dto);
@@ -35,7 +35,6 @@ public class HouseController {
     @ResponseStatus(HttpStatus.OK)
     public List<HouseDto> getHouses() {
         return houseFacade.getAll();
-
     }
 
 
