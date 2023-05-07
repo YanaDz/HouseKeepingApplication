@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface HouseService {
     House persistHouse(House house);
 
-    Optional<House> getById(Long id);
+    House getById(Long id);
 
     Optional<House> getByNameOrAddress(String request);
 

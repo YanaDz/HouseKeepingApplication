@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
+
 @Slf4j
 @Component
 @Transactional
@@ -32,5 +34,13 @@ public class HouseFacadeImpl implements HouseFacade {
         return houseService.getAll().stream()
             .map(houseMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public HouseDto getById(Long id) {
+        var house = houseService.getById(id);
+        return isNull(house)
+            ? null
+            : houseMapper.toDto(house);
     }
 }

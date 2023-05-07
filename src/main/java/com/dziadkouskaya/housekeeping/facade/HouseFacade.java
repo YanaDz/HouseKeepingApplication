@@ -9,4 +9,7 @@ public interface HouseFacade {
     HouseDto createHouse(HouseDtoRequest dto);
 
     List<HouseDto> getAll();
+
+    HouseDto getById(Long id);
+
 }

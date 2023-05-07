@@ -5,6 +5,7 @@ import com.dziadkouskaya.housekeeping.exception.EntityExistedExeption;
 import com.dziadkouskaya.housekeeping.repository.HouseRepo;
 import com.dziadkouskaya.housekeeping.service.HouseService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static com.dziadkouskaya.housekeeping.repository.specification.HouseSpeci
 import static com.dziadkouskaya.housekeeping.repository.specification.HouseSpecification.search;
 import static com.dziadkouskaya.housekeeping.utils.Constants.HOUSE_EXISTED;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class HouseServiceImpl implements HouseService {
@@ -29,8 +31,8 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Optional<House> getById(Long id) {
-        return Optional.empty();
+    public House getById(Long id) {
+        return houseRepo.getReferenceById(id);
     }
 
     @Override
