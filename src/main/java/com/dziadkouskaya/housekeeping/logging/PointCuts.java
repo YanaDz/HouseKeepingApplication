@@ -22,4 +22,13 @@ public class PointCuts {
     public void gettingAllEntities() {
     }
 
+    @Pointcut("execution(public * getById(..))")
+    public void getById(){}
+
+    @Pointcut("execution(public * getBy*(..))")
+    public void getByAnyParameter(){}
+
+    @Pointcut("getByAnyParameter() && !getById()")
+    public void getByParametersWithoutId() {}
+
 }

@@ -6,7 +6,6 @@ plugins {
 
 group = 'com.dziadkouskaya'
 version = '1.0'
-sourceCompatibility = '17'
 
 configurations {
 	compileOnly {
@@ -46,4 +45,5 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
 
