@@ -13,12 +13,17 @@ public class PointCuts {
     public void getAll() {
     }
 
-    @Pointcut("execution(public * com.dziadkouskaya.housekeeping.facade.*.getAll(..)) " +
-        "|| execution(public * com.dziadkouskaya.housekeeping.facade.*.getAll*(..))")
-    public void getAllInFacades() {
+    @Pointcut("execution(public * com.dziadkouskaya.housekeeping.facade.*.get*(..)) " +
+        "|| execution(public * com.dziadkouskaya.housekeeping.facade.*.get*(..))")
+    public void getInFacades() {
     }
 
-    @Pointcut("getAll()  && !getAllInFacades()")
+    @Pointcut("execution(public * com.dziadkouskaya.housekeeping.controller.*.get*(..)) " +
+        "|| execution(public * com.dziadkouskaya.housekeeping.controller.*.get*(..))")
+    public void getInControllers() {
+    }
+
+    @Pointcut("getAll()  && !getInFacades() && !getInControllers()")
     public void gettingAllEntities() {
     }
 
@@ -28,7 +33,7 @@ public class PointCuts {
     @Pointcut("execution(public * getBy*(..))")
     public void getByAnyParameter(){}
 
-    @Pointcut("getByAnyParameter() && !getById()")
+    @Pointcut("getByAnyParameter() && !getById() && !getInFacades() && !getInControllers()")
     public void getByParametersWithoutId() {}
 
 }

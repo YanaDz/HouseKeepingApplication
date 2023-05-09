@@ -27,7 +27,6 @@ public class HouseSpecification {
         }
         Stream<Specification<T>> specification = toSpecificationStream(search);
         return specification.reduce(conjunction(), Specification::and);
-
     }
 
     public static <T extends House> Specification<T> fullSearch(String search) {
@@ -41,14 +40,14 @@ public class HouseSpecification {
     }
 
     public static <T extends House> Specification<T> searchByName(String search, SearchType searchType) {
-        return getTeqieSearch(House_.NAME, search, searchType);
+        return getHouseSearch(House_.NAME, search, searchType);
     }
 
     public static <T extends House> Specification<T> searchByAddress(String search, SearchType searchType) {
-        return getTeqieSearch(House_.ADDRESS, search, searchType);
+        return getHouseSearch(House_.ADDRESS, search, searchType);
     }
 
-    private static <T extends House> Specification<T> getTeqieSearch(String attribute, String search, SearchType searchType) {
+    private static <T extends House> Specification<T> getHouseSearch(String attribute, String search, SearchType searchType) {
         return (root, query, builder) -> builder.like(builder.lower(root.get(attribute)), searchType.format(search.toLowerCase()));
     }
 
