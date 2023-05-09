@@ -1,11 +1,15 @@
 package com.dziadkouskaya.housekeeping.controller;
 
+import com.dziadkouskaya.housekeeping.entity.House;
 import com.dziadkouskaya.housekeeping.entity.dto.HouseDto;
 import com.dziadkouskaya.housekeeping.entity.dto.HouseDtoRequest;
+import com.dziadkouskaya.housekeeping.entity.filters.SearchRequest;
 import com.dziadkouskaya.housekeeping.facade.HouseFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +39,19 @@ public class HouseController {
     @ResponseStatus(HttpStatus.OK)
     public List<HouseDto> getHouses() {
         return houseFacade.getAll();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public HouseDto getById(@PathVariable Long id) {
+        return houseFacade.getById(id);
+    }
+
+    @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<House> getByParams(SearchRequest request) {
+        return houseFacade.getByNameOrAddress(request);
+
     }
 
 

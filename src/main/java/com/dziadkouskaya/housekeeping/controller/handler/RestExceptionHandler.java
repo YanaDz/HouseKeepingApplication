@@ -1,6 +1,7 @@
 package com.dziadkouskaya.housekeeping.controller.handler;
 
 import com.dziadkouskaya.housekeeping.exception.ApplicationException;
+import com.dziadkouskaya.housekeeping.exception.ResourceNotFoundException;
 import com.dziadkouskaya.housekeeping.exception.RestErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +20,11 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @Slf4j
 @ControllerAdvice
 public class RestExceptionHandler {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    protected ResponseEntity<RestErrorResponse> handleBindException(ResourceNotFoundException ex, WebRequest request) {
+        return handleInternal(ex, INTERNAL_SERVER_ERROR, ex.getMessage());
+    }
+
     @ExceptionHandler(ApplicationException.class)
     protected ResponseEntity<RestErrorResponse> handleBindException(ApplicationException ex, WebRequest request) {
         return handleInternal(ex, INTERNAL_SERVER_ERROR, INNER_SERVER_ERROR_MESSAGE);
